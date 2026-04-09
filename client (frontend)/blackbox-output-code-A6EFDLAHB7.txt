@@ -1,0 +1,101 @@
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { ShieldCheckIcon, HeartIcon, VideoCameraIcon } from '@heroicons/react/24/outline';
+
+const Landing = () => {
+  const features = [
+    { icon: ShieldCheckIcon, title: "100% Verified", desc: "Face verification mandatory" },
+    { icon: HeartIcon, title: "Real Matches", desc: "Only Indian singles" },
+    { icon: VideoCameraIcon, title: "Video Calls", desc: "Safe & secure calling" }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500 relative overflow-hidden">
+      {/* Animated background */}
+      <div className="absolute inset-0">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      </div>
+
+      <motion.div 
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="relative z-10 pt-20 px-6"
+      >
+        {/* Hero Section */}
+        <div className="max-w-6xl mx-auto text-center text-white mb-24">
+          <motion.h1 
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="text-6xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent"
+          >
+            DesiMatch
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed"
+          >
+            Premium dating for Indian singles. Verified profiles, video calls, and real connections only.
+          </motion.p>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="space-x-4"
+          >
+            <Link to="/signup">
+              <button className="premium-btn text-lg px-12 py-6">
+                Get Started Free
+              </button>
+            </Link>
+          </motion.div>
+        </div>
+
+        {/* Features */}
+        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 px-6">
+          {features.map((feature, index) => (
+            <motion.div
+              key={feature.title}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 + index * 0.1 }}
+              className="glass-card p-8 text-white hover:bg-white/30 transition-all duration-300"
+            >
+              <feature.icon className="w-16 h-16 mx-auto mb-6 opacity-80" />
+              <h3 className="text-2xl font-bold mb-4">{feature.title}</h3>
+              <p className="opacity-90">{feature.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Trust Indicators */}
+        <div className="max-w-4xl mx-auto mt-24 px-6">
+          <div className="grid md:grid-cols-4 gap-8 text-center text-white/80">
+            <div>
+              <div className="text-3xl font-bold text-white">100K+</div>
+              <div>Verified Indians</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-white">24/7</div>
+              <div>Moderation</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-white">1M+</div>
+              <div>Matches Made</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-white">99.9%</div>
+              <div>Fake-Free</div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
+export default Landing;
